@@ -1,7 +1,7 @@
 ---
 kind: pipeline
 type: docker
-name: arm-build
+name: default
 
 platform:
   os: linux
