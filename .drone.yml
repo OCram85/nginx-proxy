@@ -9,7 +9,7 @@ platform:
  
 steps:
  - name: build
-   image: ubuntu:bionic
+   image: alpinelinux/docker-cli
    commands:
      - docker build - < Dockerfile.arm
 
