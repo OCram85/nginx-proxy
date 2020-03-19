@@ -12,3 +12,7 @@ steps:
    image: ubuntu:bionic
    commands:
      - docker build - < Dockerfile.arm
+
+trigger:
+  branch:
+  - arm
