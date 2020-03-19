@@ -9,5 +9,6 @@ platform:
  
 steps:
  - name: build
+   image: ubuntu:bionic
    commands:
      - docker build - < Dockerfile.arm
