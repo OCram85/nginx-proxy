@@ -1,21 +1,29 @@
 ---
 kind: pipeline
-type: docker
 name: default
 
 platform:
   os: linux
   arch: arm
- 
-steps:
- - name: build
-   image: alpinelinux/docker-cli
-   volumes:
-   - name: dockersock
-     path: /var/run
-   commands:
-     - docker build - < Dockerfile.arm
 
-trigger:
-  branch:
-  - arm
+steps:
+- name: test
+  image: docker:dind
+  volumes:
+  - name: dockersock
+    path: /var/run
+  commands:
+  - sleep 5 # give docker enough time to start
+  - docker ps -a
+
+services:
+- name: docker
+  image: docker:dind
+  privileged: true
+  volumes:
+  - name: dockersock
+    path: /var/run
+
+volumes:
+- name: dockersock
+  temp: {}
