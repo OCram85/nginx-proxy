@@ -1,6 +1,6 @@
 ---
 kind: pipeline
-type: docker
+type: exec
 name: default
 
 platform:
@@ -9,7 +9,5 @@ platform:
  
 steps:
  - name: build
-   image: plugin/docker
-   settings:
-     dockerfile: Dockerfile.arm
-     dry_run: true
+   commands:
+     - docker build - < Dockerfile.arm
