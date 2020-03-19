@@ -5,9 +5,9 @@ name: default
 
 platform:
   os: linux
-  arch: arm64
+  arch: arm
  
- steps:
+steps:
  - name: build
    image: plugin/docker
    settings:
