@@ -1,0 +1,15 @@
+---
+kind: pipeline
+type: docker
+name: arm-build
+
+platfomr:
+  os: linux
+  arch: arm
+ 
+ steps:
+ - name: building
+   image: plugin/docker
+   settings:
+     dockerfile: Dockerfile.arm
+     dry_run: true
