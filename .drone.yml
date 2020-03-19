@@ -14,7 +14,7 @@ steps:
     path: /var/run
   commands:
   - sleep 45 # wait until local raspy 4 is ready
-  - docker build - < Dockerfile.arm
+  - docker build . -f Dockerfile.arm
 
 services:
 - name: docker
