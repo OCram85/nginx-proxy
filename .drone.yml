@@ -1,25 +1,33 @@
 ---
 kind: pipeline
-type: docker
 name: default
 
 platform:
   os: linux
   arch: arm
- 
+
 steps:
- - name: build
-   image: alpinelinux/docker-cli
-   volumes:
-   - name: dockersock
-     path: /var/run
-   commands:
-     - docker build - < Dockerfile.arm
+- name: test
+  image: docker:dind
+  volumes:
+  - name: dockersock
+    path: /var/run
+  commands:
+  - sleep 30 # wait until local raspy 4 is ready
+  - docker ps -a
+
+services:
+- name: docker
+  image: docker:dind
+  privileged: true
+  volumes:
+  - name: dockersock
+    path: /var/run
 
 volumes:
 - name: dockersock
   temp: {}
-  
+
 trigger:
   branch:
   - arm
