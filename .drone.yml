@@ -10,6 +10,9 @@ platform:
 steps:
  - name: build
    image: alpinelinux/docker-cli
+   volumes:
+   - name: dockersock
+     path: /var/run
    commands:
      - docker build - < Dockerfile.arm
 
