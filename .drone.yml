@@ -1,0 +1,33 @@
+---
+kind: pipeline
+name: default
+
+platform:
+  os: linux
+  arch: arm
+
+steps:
+- name: test
+  image: docker:dind
+  volumes:
+  - name: dockersock
+    path: /var/run
+  commands:
+  - sleep 45 # wait until local raspy 4 is ready
+  - docker build . -f Dockerfile.arm
+
+services:
+- name: docker
+  image: docker:dind
+  privileged: true
+  volumes:
+  - name: dockersock
+    path: /var/run
+
+volumes:
+- name: dockersock
+  temp: {}
+
+trigger:
+  branch:
+  - arm
